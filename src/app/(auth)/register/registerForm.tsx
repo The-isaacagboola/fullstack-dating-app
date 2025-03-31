@@ -1,4 +1,5 @@
 "use client";
+import { RegisterSchema, registerUser } from "@/app/actions/authActions";
 import { useReducer } from "react";
 
 const initialState = {
@@ -12,12 +13,24 @@ const RegisterForm = () => {
     return { ...prev, [action.type]: action.payload };
   }, initialState);
 
+  const handleSubmit = async (data: RegisterSchema) => {
+    const result = await registerUser(data);
+    console.log(result);
+
+    if (result.status === "success") {
+      console.log("User registered successfull:::", result.data);
+    } else {
+      console.log("Unable to register User. Try again");
+      throw new Error("Unable to register User. Try again");
+    }
+  };
+
   return (
     <form
       className="flex flex-col gap-2"
       onSubmit={(e) => {
         e.preventDefault();
-        console.log(state);
+        handleSubmit(state);
       }}
     >
       <label htmlFor="name">Name:</label>
