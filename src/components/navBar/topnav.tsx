@@ -1,21 +1,18 @@
 import Link from "next/link";
 import React from "react";
 import NavLinks from "./navLinks";
-import profileImage from "@/app/favicon.ico";
-import Image from "next/image";
+import { auth } from "@/auth";
 
-const TopNav = () => {
+const TopNav = async () => {
+  const session = await auth();
+
   return (
-    <div className="flex justify-between text-xl">
+    <div className="flex justify-between text-xl items-center">
       <h1 className="text-2xl font-semibold">
         <Link href={"/"}>MatchMe</Link>
       </h1>
 
-      <NavLinks />
-
-      <div className="w-10 cursor-pointer">
-        <Image src={profileImage} alt="profile image" />
-      </div>
+      <NavLinks session={session?.user} />
     </div>
   );
 };

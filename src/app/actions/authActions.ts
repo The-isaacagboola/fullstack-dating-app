@@ -2,21 +2,16 @@
 
 import { signIn, signOut } from "@/auth";
 import { prisma } from "@/prisma";
+import {
+  LoginSchema,
+  registerSchema,
+  RegisterSchema,
+} from "@/lib/schemas/schema";
 import bcrypt from "bcryptjs";
 import { AuthError } from "next-auth";
 
-export type LoginSchema = {
-  email: string;
-  password: string;
-};
-
-export type RegisterSchema = {
-  name: string;
-  email: string;
-  password: string;
-};
-
 export async function signInUser(data: LoginSchema) {
+  console.log(data);
   try {
     await signIn("credentials", {
       email: data.email,
@@ -46,10 +41,10 @@ export async function signOutUser() {
 
 export async function registerUser(data: RegisterSchema) {
   try {
-    const validated = data.email && data.name && data.password;
+    const validated = registerSchema.safeParse(data);
 
-    if (!validated) {
-      return { status: "error", error: "An empty required data provided" };
+    if (!validated.success) {
+      return { status: "error", error: validated.error.errors };
     }
 
     const { name, email, password } = data;
@@ -78,9 +73,9 @@ export async function registerUser(data: RegisterSchema) {
 }
 
 export async function getUserByEmail(email: string) {
-  return prisma.user.findUnique({ where: { email } });
+  return await prisma.user.findUnique({ where: { email } });
 }
 
 export async function getUserById(id: string) {
-  return prisma.user.findUnique({ where: { id } });
+  return await prisma.user.findUnique({ where: { id } });
 }

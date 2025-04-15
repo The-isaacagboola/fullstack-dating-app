@@ -1,13 +1,20 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
+import UserMenu from "./userMenu";
 
-const NavLinks = () => {
+export type UserProp = {
+  name: string;
+  email: string;
+  image: null | string;
+  id: string;
+};
+
+const NavLinks = ({ session }: { session: UserProp }) => {
   const pathname = usePathname();
 
   return (
-    <div className="flex items-center  gap-10 w-[40%] justify-between">
+    <div className="flex items-center  gap-10 w-[60%] justify-between">
       <ul className="flex gap-2">
         <li
           className={`${
@@ -32,22 +39,26 @@ const NavLinks = () => {
         </li>
       </ul>
 
-      <div className="flex gap-4">
-        <button
-          className={`${
-            pathname == "/login" ? "text-green-700 font-semibold" : ""
-          }`}
-        >
-          <Link href={"/login"}>Login</Link>
-        </button>
-        <button
-          className={`${
-            pathname == "/register" ? "text-green-700 font-semibold" : ""
-          }`}
-        >
-          <Link href={"/register"}>Register</Link>
-        </button>
-      </div>
+      {session ? (
+        <UserMenu session={session} />
+      ) : (
+        <div className="flex gap-4">
+          <button
+            className={`${
+              pathname == "/login" ? "text-green-700 font-semibold" : ""
+            }`}
+          >
+            <Link href={"/login"}>Login</Link>
+          </button>
+          <button
+            className={`${
+              pathname == "/register" ? "text-green-700 font-semibold" : ""
+            }`}
+          >
+            <Link href={"/register"}>Register</Link>
+          </button>
+        </div>
+      )}
     </div>
   );
 };
