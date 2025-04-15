@@ -16,25 +16,13 @@ const NavLinks = ({ session }: { session: UserProp }) => {
   return (
     <div className="flex items-center  gap-10 w-[60%] justify-between">
       <ul className="flex gap-2">
-        <li
-          className={`${
-            pathname == "/matches" ? "text-green-700 font-semibold" : ""
-          }`}
-        >
+        <li className={`${pathname == "/matches" ? "text-red-500 " : ""}`}>
           <Link href={"/matches"}>Matches</Link>
         </li>
-        <li
-          className={`${
-            pathname == "/members" ? "text-green-700 font-semibold" : ""
-          }`}
-        >
+        <li className={`${pathname == "/members" ? "text-red-500 " : ""}`}>
           <Link href={"/members"}> Lists</Link>
         </li>
-        <li
-          className={`${
-            pathname == "/messages" ? "text-green-700 font-semibold" : ""
-          }`}
-        >
+        <li className={`${pathname == "/messages" ? "text-red-500 " : ""}`}>
           <Link href={"/messages"}>Messages</Link>
         </li>
       </ul>
@@ -43,17 +31,11 @@ const NavLinks = ({ session }: { session: UserProp }) => {
         <UserMenu session={session} />
       ) : (
         <div className="flex gap-4">
-          <button
-            className={`${
-              pathname == "/login" ? "text-green-700 font-semibold" : ""
-            }`}
-          >
+          <button className={`${pathname == "/login" ? "text-red-500 " : ""}`}>
             <Link href={"/login"}>Login</Link>
           </button>
           <button
-            className={`${
-              pathname == "/register" ? "text-green-700 font-semibold" : ""
-            }`}
+            className={`${pathname == "/register" ? "text-red-500 " : ""}`}
           >
             <Link href={"/register"}>Register</Link>
           </button>

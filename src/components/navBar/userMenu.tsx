@@ -36,7 +36,7 @@ const UserMenu = ({ session }: { session: UserProp }) => {
         {showDropDn && (
           <div
             ref={menuRef}
-            className="absolute flex flex-col gap-3 w-[200px] right-10 p-4"
+            className="absolute flex flex-col gap-3 w-[200px] right-10 p-4 mt-3"
           >
             <p>Signed in as {session.name}</p>
 
