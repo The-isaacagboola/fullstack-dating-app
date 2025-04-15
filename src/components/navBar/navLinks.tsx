@@ -25,10 +25,10 @@ const NavLinks = ({ session }: { session: UserProp }) => {
         </li>
         <li
           className={`${
-            pathname == "/friends" ? "text-green-700 font-semibold" : ""
+            pathname == "/members" ? "text-green-700 font-semibold" : ""
           }`}
         >
-          <Link href={"/friends"}> Lists</Link>
+          <Link href={"/members"}> Lists</Link>
         </li>
         <li
           className={`${

@@ -11,7 +11,6 @@ import bcrypt from "bcryptjs";
 import { AuthError } from "next-auth";
 
 export async function signInUser(data: LoginSchema) {
-  console.log(data);
   try {
     await signIn("credentials", {
       email: data.email,
@@ -21,7 +20,6 @@ export async function signInUser(data: LoginSchema) {
 
     return { status: "success", data: "Logged in" };
   } catch (error) {
-    console.log(error);
     if (error instanceof AuthError) {
       switch (error.type) {
         case "CredentialsSignin":

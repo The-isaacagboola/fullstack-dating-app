@@ -1,18 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/providers";
 import TopNav from "@/components/navBar/topnav";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+// const geistSans = Geist({
+//   variable: "--font-geist-sans",
+//   subsets: ["latin"],
+// });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// const geistMono = Geist_Mono({
+//   variable: "--font-geist-mono",
+//   subsets: ["latin"],
+// });
 
 export const metadata: Metadata = {
   title: "Match Me",
@@ -29,7 +28,7 @@ export default function RootLayout({
       <body className="px-5 text-white bg-[#050505]">
         <Providers>
           <TopNav />
-          <main className="container mx-auto">{children}</main>
+          <main className="container mx-auto ">{children}</main>
         </Providers>
       </body>
     </html>

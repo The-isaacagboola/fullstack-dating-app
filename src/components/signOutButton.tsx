@@ -1,3 +1,4 @@
+"use client";
 const SignOutButton = () => {
   const handleLogout = () => (window.location.href = "/signout");
   return (
