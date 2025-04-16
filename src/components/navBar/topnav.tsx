@@ -12,7 +12,7 @@ const TopNav = async () => {
   console.log(pathname);
 
   return (
-    <div className="flex justify-between text-xl items-center mt-5">
+    <div className="flex justify-between text-xl items-center mt-5 mb-8">
       <h1 className="text-2xl font-semibold">
         <Link href={"/"}>MatchMe</Link>
       </h1>

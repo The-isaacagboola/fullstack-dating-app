@@ -3,9 +3,13 @@ import { getMembers } from "../actions/memberActions";
 import MemberCard from "./MemberCard";
 
 const FriendsPage = async () => {
-  const members = await getMembers();
+  const { members, error } = await getMembers();
 
-  if (!members) {
+  if (error) {
+    return <div>Error : {error}</div>;
+  }
+
+  if (!members || members.length === 0) {
     return (
       <div>
         <h1>No members available</h1>
@@ -14,7 +18,7 @@ const FriendsPage = async () => {
   }
 
   return (
-    <div className="container mt-8 grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+    <div className="container grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 pb-5">
       {members.map((member) => (
         <MemberCard key={member.id} memberData={member} />
       ))}

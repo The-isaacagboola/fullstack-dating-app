@@ -1,1 +1,20 @@
 @import "tailwindcss";
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border-color: rgba(156, 154, 154, 0.762);
+  border-radius: 50%;
+  border-top: 2px solid;
+  border-left: 2px solid;
+  animation: spin 700ms linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

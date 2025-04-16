@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { calculateAge } from "@/lib/helpers";
+import Link from "next/link";
 
 interface Props {
   memberData: {
@@ -19,22 +20,25 @@ interface Props {
 
 const MemberCard = ({ memberData }: Props) => {
   return (
-    <div className="relative w-full h-[250px] text-black rounded-t-xl overflow-hidden">
+    <Link
+      href={`/members/${memberData.userId}`}
+      className="relative group h-[300px] text-black rounded-xl overflow-hidden"
+    >
       <Image
         src={memberData.image || "/images/user.png"}
         alt="user profile picture"
-        className=" object-cover  "
+        className="object-cover aspect-square group-hover:scale-105 transition-all"
         fill
       />
 
-      <div className="absolute z-[1000] bottom-0 pl-3 shadow-sm w-full pb-4 bg-gradient-to-t from-black/90 to-transparent">
+      <div className="absolute z-[1000] bottom-0 pl-3 shadow-sm w-full pb-4 bg-gradient-to-b from-transparent to-white border-none">
         <p className="font-medium text-lg">
           <span>{memberData.name}, </span>
           <span>{calculateAge(memberData.dateOfBirth)}</span>
         </p>
         <p>{memberData.city}</p>
       </div>
-    </div>
+    </Link>
   );
 };
 
