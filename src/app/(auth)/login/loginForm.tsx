@@ -33,23 +33,25 @@ const LoginForm = () => {
   };
   return (
     <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
-      <div>
+      <div className="mb-2">
         <label htmlFor="email">Email:</label>
         <input
           type="email"
           {...register("email")}
-          className="block border-2 p-1 border-b-gray-700 rounded mb-2"
+          className="block border-2 w-full p-1 border-b-gray-700 rounded"
         />
-        {errors.email && <p>{errors.email.message}</p>}
+        {errors.email && <p className="text-red-500">{errors.email.message}</p>}
       </div>
 
       <div>
         <label htmlFor="password">Password:</label>
         <input
           {...register("password")}
-          className="block border-2 p-1 border-b-gray-700 rounded"
+          className="block border-2 w-full p-1 border-b-gray-700 rounded"
         />
-        {errors.password && <p>{errors.password.message}</p>}
+        {errors.password && (
+          <p className="text-red-500">{errors.password.message}</p>
+        )}
       </div>
       <button
         type="submit"

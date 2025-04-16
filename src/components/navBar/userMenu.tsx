@@ -29,16 +29,18 @@ const UserMenu = ({ session }: { session: UserProp }) => {
         <Image
           src={session.image || profileImage}
           alt="profile image"
-          className="cursor-pointer"
+          className="cursor-pointer rounded-full"
           onClick={toggleDropDn}
+          width={50}
+          height={50}
         />
 
         {showDropDn && (
           <div
             ref={menuRef}
-            className="absolute flex flex-col gap-3 w-[200px] right-10 p-4 mt-3"
+            className="absolute z-[1000] rounded-lg bg-white from-red-200 to-red-white text-black flex flex-col gap-3 w-[220px] right-10 p-4 mt-3"
           >
-            <p>Signed in as {session.name}</p>
+            <p className="font-medium">Signed in as {session.name}</p>
 
             <Link href={"/"} className="inline-flex">
               Edit Profile
