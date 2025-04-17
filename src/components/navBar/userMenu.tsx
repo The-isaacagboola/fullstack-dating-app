@@ -1,12 +1,12 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { UserProp } from "./navLinks";
 import Image from "next/image";
 import profileImage from "./avatardefault_92824.webp";
 import Link from "next/link";
 import SignOutButton from "../signOutButton";
 
-const UserMenu = ({ session }: { session: UserProp }) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const UserMenu = ({ session }: { session: any }) => {
   const [showDropDn, setShowDropDn] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 

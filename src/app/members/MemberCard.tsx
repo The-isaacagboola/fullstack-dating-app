@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { calculateAge } from "@/lib/helpers";
 import Link from "next/link";
+import LikeUserButton from "@/components/LikeButton";
 
 interface Props {
   memberData: {
@@ -16,9 +17,12 @@ interface Props {
     city: string;
     country: string;
   };
+  likeIds: string[];
 }
 
-const MemberCard = ({ memberData }: Props) => {
+const MemberCard = async ({ memberData, likeIds }: Props) => {
+  console.log(likeIds, memberData.id);
+  const liked = !!likeIds.includes(memberData.userId);
   return (
     <Link
       href={`/members/${memberData.userId}`}
@@ -30,6 +34,7 @@ const MemberCard = ({ memberData }: Props) => {
         className="object-cover aspect-square group-hover:scale-105 transition-all"
         fill
       />
+      <LikeUserButton hasLiked={liked} targetId={memberData.userId} />
 
       <div className="absolute z-[1000] bottom-0 pl-3 shadow-sm w-full pb-4 bg-gradient-to-b from-transparent to-white border-none">
         <p className="font-medium text-lg">
