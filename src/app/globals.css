@@ -9,6 +9,13 @@
   border-left: 2px solid;
   animation: spin 700ms linear infinite;
 }
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
 @keyframes spin {
   0% {

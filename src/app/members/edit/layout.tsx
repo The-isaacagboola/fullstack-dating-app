@@ -1,15 +1,10 @@
 import React, { ReactNode } from "react";
 import MemberSideBar from "../memberSideBar";
 import { getMemberById } from "@/app/actions/memberActions";
+import { getAuthUserId } from "@/app/actions/authActions";
 
-const Layout = async ({
-  children,
-  params,
-}: {
-  children: ReactNode;
-  params: { userId: string };
-}) => {
-  const { userId } = await params;
+const Layout = async ({ children }: { children: ReactNode }) => {
+  const userId = await getAuthUserId();
   const { member, error } = await getMemberById(userId);
 
   if (error) {
@@ -20,19 +15,15 @@ const Layout = async ({
     return <div>User does not exist</div>;
   }
 
-  const basePath = `/members/${member.userId}`;
+  const basePath = `/members/edit`;
   const links = [
     {
       title: "Profile",
       url: basePath,
     },
     {
-      title: "Photos",
+      title: "Update Photos",
       url: `${basePath}/photos`,
-    },
-    {
-      title: "Chat",
-      url: `${basePath}/chat`,
     },
   ];
 

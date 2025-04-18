@@ -42,7 +42,7 @@ const UserMenu = ({ session }: { session: any }) => {
           >
             <p className="font-medium">Signed in as {session.name}</p>
 
-            <Link href={"/"} className="inline-flex">
+            <Link href={"/members/edit"} className="inline-flex">
               Edit Profile
             </Link>
 

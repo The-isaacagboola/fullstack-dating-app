@@ -14,11 +14,11 @@ const NavLinks = () => {
 
   return (
     <ul className="gap-2 hidden md:flex">
-      <li className={`${pathname == "/matches" ? "text-red-500 " : ""}`}>
-        <Link href={"/matches"}>Matches</Link>
-      </li>
       <li className={`${pathname == "/members" ? "text-red-500 " : ""}`}>
-        <Link href={"/members"}> Lists</Link>
+        <Link href={"/members"}>Matches</Link>
+      </li>
+      <li className={`${pathname == "/lists" ? "text-red-500 " : ""}`}>
+        <Link href={"/lists?type=source"}> Lists</Link>
       </li>
       <li className={`${pathname == "/messages" ? "text-red-500 " : ""}`}>
         <Link href={"/messages"}>Messages</Link>

@@ -9,7 +9,6 @@ const TopNav = async () => {
   const session = await auth();
   const headersList = await headers();
   const pathname = headersList.get("x-next-url");
-  console.log(pathname);
 
   return (
     <div className="flex justify-between text-xl items-center mt-5 mb-8">

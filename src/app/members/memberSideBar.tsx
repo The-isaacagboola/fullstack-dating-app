@@ -5,24 +5,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { calculateAge } from "@/lib/helpers";
 
-const MemberSideBar = ({ member }: { member: Member }) => {
+const MemberSideBar = ({
+  member,
+  links,
+}: {
+  member: Member;
+  links: Array<{ title: string; url: string }>;
+}) => {
   const path = usePathname();
-  const basePath = `/members/${member.userId}`;
-  console.log(path);
-  const links = [
-    {
-      title: "Profile",
-      url: basePath,
-    },
-    {
-      title: "Photos",
-      url: `${basePath}/photos`,
-    },
-    {
-      title: "Chat",
-      url: `${basePath}/chat`,
-    },
-  ];
 
   return (
     <div className="flex flex-col justify-between min-h-[600px] py-4 px-7  text-lg rounded-xl shadow-xl bg-gray-700/10">

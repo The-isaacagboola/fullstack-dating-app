@@ -22,7 +22,9 @@ const LikeUserButton = ({ targetId, hasLiked }: Prop) => {
         e.stopPropagation();
         toggleLike();
       }}
-      className="absolute flex items-center justify-center right-2 top-2 transition-all hover:opacity-80 cursor-pointer bg-red-200 p-1 rounded-full"
+      className={`absolute flex items-center justify-center right-2 top-2 transition-all hover:opacity-80 cursor-pointer ${
+        hasLiked ? "bg-red-200" : "bg-black/10"
+      } p-1 rounded-full`}
     >
       <AiFillHeart color={hasLiked ? "#E31B23" : "#999999"} size={20} />
     </div>

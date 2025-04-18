@@ -25,7 +25,11 @@ export async function signInUser(data: LoginSchema) {
         case "CredentialsSignin":
           return { status: "error", error: "Invalid credentials" };
         default:
-          return { status: "error", error: "Something went wrong" };
+          return {
+            status: "error",
+            error:
+              "Something went wrong. Please check your internet and try again",
+          };
       }
     } else {
       return { status: "error", error: "Something else went wrong" };

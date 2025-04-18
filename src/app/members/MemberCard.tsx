@@ -21,7 +21,6 @@ interface Props {
 }
 
 const MemberCard = async ({ memberData, likeIds }: Props) => {
-  console.log(likeIds, memberData.id);
   const liked = !!likeIds.includes(memberData.userId);
   return (
     <Link
@@ -31,7 +30,7 @@ const MemberCard = async ({ memberData, likeIds }: Props) => {
       <Image
         src={memberData.image || "/images/user.png"}
         alt="user profile picture"
-        className="object-cover aspect-square group-hover:scale-105 transition-all"
+        className="object-cover aspect-square group-hover:scale-110 transition-all"
         fill
       />
       <LikeUserButton hasLiked={liked} targetId={memberData.userId} />
