@@ -12,7 +12,7 @@ const Layout = async ({ children }: { children: ReactNode }) => {
   }
 
   if (!member) {
-    return <div>User does not exist</div>;
+    return <div>User does not exist or has not been created</div>;
   }
 
   const basePath = `/members/edit`;
