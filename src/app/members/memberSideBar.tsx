@@ -24,6 +24,7 @@ const MemberSideBar = ({
           height={100}
           className="rounded-full mt-4"
         />
+
         <div className="w-full text-center pb-2 border-b-2 border-gray-400/20">
           <h1 className="font-medium mt-2">
             {member.name}, {calculateAge(member.dateOfBirth)}

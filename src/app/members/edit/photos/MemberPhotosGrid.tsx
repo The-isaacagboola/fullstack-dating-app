@@ -1,11 +1,11 @@
 "use client";
 import { deleteImage, setMainImage } from "@/app/actions/userActions";
+import DeleteButton from "@/components/DeleteButton";
 import MemberImage from "@/components/MemberImage";
+import StarButton, { Loading } from "@/components/StarButton";
 import { Photo } from "@prisma/client";
 import { useRouter } from "next/navigation";
-// import { MouseEvent } from "react";
-import { GoStarFill } from "react-icons/go";
-import { RiDeleteBinFill } from "react-icons/ri";
+import { useState } from "react";
 import { toast } from "react-toastify";
 
 const MemberPhotosGrid = ({
@@ -16,15 +16,40 @@ const MemberPhotosGrid = ({
   mainImageUrl: string;
 }) => {
   const router = useRouter();
+  const [loading, setLoading] = useState<Loading>({
+    state: false,
+    id: "",
+    type: null,
+  });
+
   const handleImageDelete = async (photo: Photo) => {
-    await deleteImage(photo);
-    toast.success("Image deleted successfully");
+    if (photo.url === mainImageUrl)
+      return toast.info("Cannot delete main display image.");
+    try {
+      setLoading({ type: "delete", state: true, id: photo.id });
+      await deleteImage(photo);
+      toast.success("Image deleted successfully");
+      setLoading({ type: null, state: false, id: "" });
+    } catch (error) {
+      console.log(error);
+      toast.error("Unable to delete image. Try again");
+      setLoading({ type: null, state: false, id: "" });
+    }
     router.refresh();
   };
+
   const handleMainImageSelection = async (photo: Photo) => {
     if (photo.url !== mainImageUrl) {
-      await setMainImage(photo);
-      router.refresh();
+      try {
+        setLoading({ type: "mainImg", state: true, id: photo.id });
+        await setMainImage(photo);
+        router.refresh();
+        setLoading({ type: null, state: false, id: "" });
+      } catch (error) {
+        console.log(error);
+        setLoading({ type: null, state: false, id: "" });
+        toast.error("Please try again");
+      }
     } else toast.done("Already chosen as display picture");
   };
 
@@ -38,9 +63,10 @@ const MemberPhotosGrid = ({
               className="p-1 bg-white rounded-full"
               onClick={() => handleMainImageSelection(photo)}
             >
-              <GoStarFill
-                size={20}
-                fill={mainImageUrl === photo.url ? "#FFB923" : "#808080"}
+              <StarButton
+                loading={loading}
+                mainImageUrl={mainImageUrl}
+                photo={photo}
               />
             </div>
 
@@ -48,7 +74,7 @@ const MemberPhotosGrid = ({
               className="p-1 bg-white rounded-full"
               onClick={() => handleImageDelete(photo)}
             >
-              <RiDeleteBinFill size={20} fill="#FF0000" />
+              <DeleteButton loading={loading} photoId={photo.id} />
             </div>
           </div>
         </div>

@@ -11,7 +11,10 @@ const MemberImage = ({ photo }: { photo: Photo }) => {
         alt="member uploaded image"
         width={150}
         height={150}
-        className="object-cover w-full h-full rounded-xl"
+        crop="fill"
+        gravity="face"
+        className="object-cover w-full rounded-xl"
+        priority
       />
     );
   } else
@@ -19,7 +22,7 @@ const MemberImage = ({ photo }: { photo: Photo }) => {
       <Image
         alt="User images"
         src={photo.url || "/images/user.png"}
-        className="aspect-square object-cover rounded-xl"
+        className="aspect-square object-cover w-full h-full rounded-xl"
         width={150}
         height={150}
       />

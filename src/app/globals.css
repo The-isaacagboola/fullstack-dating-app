@@ -9,6 +9,9 @@
   border-left: 2px solid;
   animation: spin 700ms linear infinite;
 }
+.spin-item {
+  animation: spin 1s linear infinite;
+}
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
