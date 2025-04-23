@@ -59,7 +59,7 @@ model Photo {
   url      String
   publicId String?
   member   Member  @relation(fields: [memberId], references: [userId])
-  memberId String  @unique
+  memberId String  
 }
 
 model Like {

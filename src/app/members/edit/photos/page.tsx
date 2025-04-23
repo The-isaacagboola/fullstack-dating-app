@@ -4,6 +4,7 @@ import {
   getMemberPhotosByID,
 } from "@/app/actions/memberActions";
 import MemberPhotosGrid from "./MemberPhotosGrid";
+import MemberPhotoUpload from "./MemberPhotoUpload";
 
 const PhotosPage = async () => {
   const userId = await getAuthUserId();
@@ -32,6 +33,7 @@ const PhotosPage = async () => {
         <h1 className="text-2xl font-medium">Profile</h1>
       </div>
       <div className="mt-6">
+        <MemberPhotoUpload />
         <MemberPhotosGrid photos={photos} mainImageUrl={member.image} />
       </div>
     </div>

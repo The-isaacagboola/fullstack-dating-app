@@ -9,15 +9,15 @@ const MemberPhotosGrid = ({
   mainImageUrl: string;
 }) => {
   return (
-    <div className="grid grid-cols-5 gap-3">
+    <div className="flex gap-3">
       {photos.map((photo) => (
         <Image
           key={photo.id}
           alt="User images"
           src={photo.url}
           className="aspect-square object-cover rounded-full cursor-pointer"
-          width={90}
-          height={90}
+          width={120}
+          height={120}
         />
       ))}
     </div>

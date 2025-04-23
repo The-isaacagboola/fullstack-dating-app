@@ -70,8 +70,8 @@ export async function getMemberById(id: string): Promise<GetById> {
       },
     });
     return { error: false, member };
-  } catch (error) {
-    console.log(error);
+  } catch (e) {
+    console.log(e);
     return {
       error: true,
       member: null,
