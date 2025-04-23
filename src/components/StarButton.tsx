@@ -11,15 +11,13 @@ export default function StarButton({
   mainImageUrl,
   photo,
 }: {
-  loading: Loading;
+  loading: boolean;
   mainImageUrl: string;
   photo: Photo;
 }) {
   return (
     <div>
-      {loading.state &&
-      loading.id === photo.id &&
-      loading.type === "mainImg" ? (
+      {loading ? (
         <ImSpinner3 size={20} fill="#808080" className="spin-item" />
       ) : (
         <GoStarFill

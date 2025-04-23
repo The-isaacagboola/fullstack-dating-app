@@ -52,7 +52,10 @@ export async function deleteImage(photo: Photo) {
     return new Error("Images cannot be deleted by third-parties");
   } else {
     try {
-      await prisma.member.update({
+      if (photo.publicId) {
+        await cloudinary.v2.uploader.destroy(photo.publicId);
+      }
+      return await prisma.member.update({
         where: {
           userId,
         },
@@ -62,12 +65,6 @@ export async function deleteImage(photo: Photo) {
           },
         },
       });
-
-      //  await prisma.photo.delete({
-      //   where : {
-      //      id : photo.id
-      //   }
-      //  })
     } catch (error) {
       console.log(error);
       throw error;

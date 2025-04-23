@@ -4,9 +4,11 @@ import NavLinks from "./navLinks";
 import { auth } from "@/auth";
 import UserMenu from "./userMenu";
 import { headers } from "next/headers";
+import { getUserInfoForNav } from "@/app/actions/userActions";
 
 const TopNav = async () => {
   const session = await auth();
+  const userInfo = session?.user && (await getUserInfoForNav());
   const headersList = await headers();
   const pathname = headersList.get("x-next-url");
 
@@ -18,8 +20,8 @@ const TopNav = async () => {
 
       <NavLinks />
 
-      {session && session.user ? (
-        <UserMenu session={session.user} />
+      {userInfo ? (
+        <UserMenu userInfo={userInfo} />
       ) : (
         <div className="flex gap-4">
           <button className={`${pathname == "/login" ? "text-red-500 " : ""}`}>

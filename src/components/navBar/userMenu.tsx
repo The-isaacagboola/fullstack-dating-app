@@ -5,8 +5,11 @@ import profileImage from "./avatardefault_92824.webp";
 import SignOutButton from "../signOutButton";
 import { useRouter } from "next/navigation";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const UserMenu = ({ session }: { session: any }) => {
+const UserMenu = ({
+  userInfo,
+}: {
+  userInfo: { name: string | null; image: string | null };
+}) => {
   const [showDropDn, setShowDropDn] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
@@ -27,7 +30,7 @@ const UserMenu = ({ session }: { session: any }) => {
     <div>
       <div className="w-10">
         <Image
-          src={session.image || profileImage}
+          src={userInfo.image || profileImage}
           alt="profile image"
           className="cursor-pointer rounded-full"
           onClick={toggleDropDn}
@@ -40,7 +43,7 @@ const UserMenu = ({ session }: { session: any }) => {
             ref={menuRef}
             className="absolute z-[1000] rounded-lg bg-white from-red-200 to-red-white text-black flex flex-col gap-3 w-[220px] right-10 p-4 mt-3"
           >
-            <p className="font-medium">Signed in as {session.name}</p>
+            <p className="font-medium">Signed in as {userInfo.name}</p>
 
             <div
               onClick={() => {

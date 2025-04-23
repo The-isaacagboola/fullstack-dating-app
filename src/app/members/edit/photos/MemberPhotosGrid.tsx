@@ -44,12 +44,12 @@ const MemberPhotosGrid = ({
         setLoading({ type: "mainImg", state: true, id: photo.id });
         await setMainImage(photo);
         router.refresh();
-        setLoading({ type: null, state: false, id: "" });
       } catch (error) {
         console.log(error);
         setLoading({ type: null, state: false, id: "" });
         toast.error("Please try again");
       }
+      setLoading({ type: null, state: false, id: "" });
     } else toast.done("Already chosen as display picture");
   };
 
@@ -64,7 +64,11 @@ const MemberPhotosGrid = ({
               onClick={() => handleMainImageSelection(photo)}
             >
               <StarButton
-                loading={loading}
+                loading={
+                  loading.state &&
+                  loading.id === photo.id &&
+                  loading.type === "mainImg"
+                }
                 mainImageUrl={mainImageUrl}
                 photo={photo}
               />
@@ -74,7 +78,13 @@ const MemberPhotosGrid = ({
               className="p-1 bg-white rounded-full"
               onClick={() => handleImageDelete(photo)}
             >
-              <DeleteButton loading={loading} photoId={photo.id} />
+              <DeleteButton
+                loading={
+                  loading.state &&
+                  loading.id === photo.id &&
+                  loading.type === "delete"
+                }
+              />
             </div>
           </div>
         </div>
