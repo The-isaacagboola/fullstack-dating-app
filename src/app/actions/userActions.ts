@@ -2,6 +2,7 @@
 import { prisma } from "@/prisma";
 import { getAuthUserId } from "./authActions";
 import { Photo } from "@prisma/client";
+import { cloudinary } from "@/lib/cloudinary";
 
 export async function addImage(url: string, publicId: string) {
   try {
@@ -20,6 +21,7 @@ export async function addImage(url: string, publicId: string) {
     });
   } catch (error) {
     console.log(error);
+    await cloudinary.v2.uploader.destroy(publicId);
     throw error;
   }
 }
@@ -41,5 +43,34 @@ export async function setMainImage(photo: Photo) {
   } catch (error) {
     console.log(error);
     throw error;
+  }
+}
+
+export async function deleteImage(photo: Photo) {
+  const userId = await getAuthUserId();
+  if (userId !== photo.memberId) {
+    return new Error("Images cannot be deleted by third-parties");
+  } else {
+    try {
+      await prisma.member.update({
+        where: {
+          userId,
+        },
+        data: {
+          photos: {
+            delete: { id: photo.id },
+          },
+        },
+      });
+
+      //  await prisma.photo.delete({
+      //   where : {
+      //      id : photo.id
+      //   }
+      //  })
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
   }
 }

@@ -2,14 +2,14 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import profileImage from "./avatardefault_92824.webp";
-import Link from "next/link";
 import SignOutButton from "../signOutButton";
+import { useRouter } from "next/navigation";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const UserMenu = ({ session }: { session: any }) => {
   const [showDropDn, setShowDropDn] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-
+  const router = useRouter();
   const toggleDropDn = () => setShowDropDn((prev) => !prev);
 
   useEffect(() => {
@@ -42,9 +42,15 @@ const UserMenu = ({ session }: { session: any }) => {
           >
             <p className="font-medium">Signed in as {session.name}</p>
 
-            <Link href={"/members/edit"} className="inline-flex">
+            <div
+              onClick={() => {
+                setShowDropDn(false);
+                router.push("/members/edit");
+              }}
+              className="inline-flex cursor-pointer"
+            >
               Edit Profile
-            </Link>
+            </div>
 
             <SignOutButton />
           </div>
