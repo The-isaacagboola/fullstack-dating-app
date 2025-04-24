@@ -1,4 +1,5 @@
 import { getMemberPhotosByID } from "@/app/actions/memberActions";
+import CardInnerWrapper from "@/components/CardInnerWrapper";
 import Image from "next/image";
 
 const PhotosPage = async ({ params }: { params: { userId: string } }) => {
@@ -13,10 +14,7 @@ const PhotosPage = async ({ params }: { params: { userId: string } }) => {
   }
 
   return (
-    <div className="w-full">
-      <div className="w-full mt-3 pb-2 mb-4 border-b-2 border-gray-400/20">
-        <h1 className="text-2xl font-medium">Photos</h1>
-      </div>
+    <CardInnerWrapper header={"Photos"}>
       <div className="grid grid-cols-5 gap-3">
         {photos.map((photo) => (
           <Image
@@ -29,7 +27,7 @@ const PhotosPage = async ({ params }: { params: { userId: string } }) => {
           />
         ))}
       </div>
-    </div>
+    </CardInnerWrapper>
   );
 };
 

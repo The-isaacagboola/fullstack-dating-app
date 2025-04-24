@@ -22,6 +22,11 @@ export const memberEditSchema = z.object({
   country: z.string().min(1, { message: "Country is required" }),
 });
 
+export const messageSchema = z.object({
+  text: z.string().min(1, { message: "Message content is required" }),
+});
+
 export type LoginSchema = z.infer<typeof loginSchema>;
 export type RegisterSchema = z.infer<typeof registerSchema>;
 export type EditProfileType = z.infer<typeof memberEditSchema>;
+export type MessageSChema = z.infer<typeof messageSchema>;

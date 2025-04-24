@@ -28,11 +28,11 @@ const UserMenu = ({
   }, []);
   return (
     <div>
-      <div className="w-10">
+      <div className="w-[50px] object-cover">
         <Image
           src={userInfo.image || profileImage}
           alt="profile image"
-          className="cursor-pointer rounded-full"
+          className="cursor-pointer aspect-square object-cover w-full h-full rounded-full"
           onClick={toggleDropDn}
           width={50}
           height={50}

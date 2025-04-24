@@ -20,9 +20,9 @@ const MemberSideBar = ({
         <Image
           alt="profile image"
           src={member.image || "/images/user.png"}
-          width={100}
-          height={100}
-          className="rounded-full mt-4"
+          width={130}
+          height={130}
+          className="rounded-full object-cover aspect-square mt-4"
         />
 
         <div className="w-full text-center pb-2 border-b-2 border-gray-400/20">

@@ -1,6 +1,7 @@
 import { getAuthUserId } from "@/app/actions/authActions";
 import { getMemberById } from "@/app/actions/memberActions";
 import EditProfileForm from "./EditForm";
+import CardInnerWrapper from "@/components/CardInnerWrapper";
 
 export default async function EditProfilePage() {
   const userId = await getAuthUserId();
@@ -11,13 +12,10 @@ export default async function EditProfilePage() {
   }
 
   return (
-    <div className="w-full">
-      <div className="w-full mt-3 pb-2 mb-4 border-b-2 border-gray-400/20">
-        <h1 className="text-2xl font-medium">Profile</h1>
-      </div>
+    <CardInnerWrapper header={"Profile"}>
       <div className="mt-6">
         <EditProfileForm member={member} />
       </div>
-    </div>
+    </CardInnerWrapper>
   );
 }

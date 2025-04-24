@@ -1,4 +1,5 @@
 import { getMemberById } from "@/app/actions/memberActions";
+import CardInnerWrapper from "@/components/CardInnerWrapper";
 
 const MemberProfilePage = async ({
   params,
@@ -17,14 +18,11 @@ const MemberProfilePage = async ({
   }
 
   return (
-    <div className="w-full">
-      <div className="w-full mt-3 pb-2 mb-4 border-b-2 border-gray-400/20">
-        <h1 className="text-2xl font-medium">Profile</h1>
-      </div>
+    <CardInnerWrapper header={"Profile"}>
       <div>
         <p>{member.description}</p>
       </div>
-    </div>
+    </CardInnerWrapper>
   );
 };
 

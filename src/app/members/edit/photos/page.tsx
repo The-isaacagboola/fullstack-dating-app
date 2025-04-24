@@ -5,6 +5,7 @@ import {
 } from "@/app/actions/memberActions";
 import MemberPhotosGrid from "./MemberPhotosGrid";
 import MemberPhotoUpload from "./MemberPhotoUpload";
+import CardInnerWrapper from "@/components/CardInnerWrapper";
 
 const PhotosPage = async () => {
   const userId = await getAuthUserId();
@@ -28,15 +29,12 @@ const PhotosPage = async () => {
   }
 
   return (
-    <div className="w-full">
-      <div className="w-full mt-3 pb-2 mb-4 border-b-2 border-gray-400/20">
-        <h1 className="text-2xl font-medium">Profile</h1>
-      </div>
+    <CardInnerWrapper header={"Update Photos"}>
       <div className="mt-6">
         <MemberPhotoUpload />
         <MemberPhotosGrid photos={photos} mainImageUrl={member.image} />
       </div>
-    </div>
+    </CardInnerWrapper>
   );
 };
 

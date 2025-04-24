@@ -60,7 +60,7 @@ const MemberPhotosGrid = ({
           <MemberImage key={photo.id} photo={photo} />
           <div className="absolute flex justify-between z-[1000] top-2 w-full px-2">
             <div
-              className="p-1 bg-white rounded-full"
+              className="p-1 bg-white opacity-60 transition-all hover:opacity-100 rounded-full"
               onClick={() => handleMainImageSelection(photo)}
             >
               <StarButton
@@ -75,7 +75,7 @@ const MemberPhotosGrid = ({
             </div>
 
             <div
-              className="p-1 bg-white rounded-full"
+              className="p-1 bg-white opacity-60 transition-all hover:opacity-100 rounded-full"
               onClick={() => handleImageDelete(photo)}
             >
               <DeleteButton
