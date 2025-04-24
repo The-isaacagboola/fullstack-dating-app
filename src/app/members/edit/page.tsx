@@ -12,7 +12,7 @@ export default async function EditProfilePage() {
   }
 
   return (
-    <CardInnerWrapper header={"Profile"}>
+    <CardInnerWrapper header={"Edit Profile"}>
       <div className="mt-6">
         <EditProfileForm member={member} />
       </div>

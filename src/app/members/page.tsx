@@ -20,7 +20,7 @@ const FriendsPage = async () => {
   }
 
   return (
-    <div className="container grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 pb-5">
+    <div className="grid gap-2 md:gap-3 lg:gap-6 grid-cols-2   md:grid-cols-3 xl:grid-cols-4 pb-5">
       {members.map((member) => (
         <MemberCard key={member.id} memberData={member} likeIds={likeIds} />
       ))}

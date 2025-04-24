@@ -25,10 +25,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="px-5 text-white bg-[#050505]">
+      <body className="px-3 md:px-5 text-white bg-[#050505]">
         <Providers>
-          <TopNav />
-          <main className="container mx-auto ">{children}</main>
+          <div className="px-4">
+            <TopNav />
+          </div>
+          <main className=" mx-auto ">{children}</main>
         </Providers>
       </body>
     </html>
