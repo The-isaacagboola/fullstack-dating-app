@@ -2,6 +2,7 @@
 import { createMessage } from "@/app/actions/messageActions";
 import { MessageSChema, messageSchema } from "@/lib/schemas/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { ImSpinner3 } from "react-icons/im";
 import { IoSendSharp } from "react-icons/io5";
@@ -18,10 +19,12 @@ export default function ChatForm({ recipientId }: { recipientId: string }) {
     mode: "onSubmit",
   });
 
+  const router = useRouter();
   const submitMessage = async (text: MessageSChema) => {
     try {
       const message = await createMessage(recipientId, text);
       reset({ text: "" });
+      router.refresh();
       if (!message.success) {
         toast.error("Unable to send message");
       }
@@ -35,7 +38,7 @@ export default function ChatForm({ recipientId }: { recipientId: string }) {
       <input
         type="text"
         placeholder="Enter your message here"
-        className="w-full py-1 px-3 rounded-lg border border-gray-500  outline-none"
+        className="w-full h-fit py-1 px-3 rounded-lg border border-gray-500 no-scrollbar outline-none"
         {...register("text")}
       />
       <button

@@ -26,8 +26,21 @@ export type MessageWithSenderRecipient = Prisma.MessageGetPayload<{
     };
   };
 }>;
+
+export type MessageDTO = {
+  id: string;
+  text: string;
+  created: string;
+  dateRead: string | null;
+  senderId: string | undefined;
+  senderName: string | undefined;
+  senderImage: string | undefined;
+  recipientId: string | undefined;
+  recipientName: string | undefined;
+  recipientImage: string | undefined;
+};
 export function formatShortDateTime(date: Date) {
-  return format(date, "dd MM yy h:mm:a");
+  return format(date, "dd MMM yy h:mm:a");
 }
 export function mapMessageToMessageDTO(message: MessageWithSenderRecipient) {
   return {

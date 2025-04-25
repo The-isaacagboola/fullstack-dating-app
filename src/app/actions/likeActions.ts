@@ -89,10 +89,10 @@ async function fetchTargetLikes(userId: string) {
         targetUserId: userId,
       },
       select: {
-        targetMember: true,
+        sourceMember: true,
       },
     });
-    return likes.map((like) => like.targetMember);
+    return likes.map((like) => like.sourceMember);
   } catch (error) {
     console.log(error);
     throw error;

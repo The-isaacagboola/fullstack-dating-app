@@ -15,7 +15,9 @@ const CardInnerWrapper = ({ header, children, footer }: PageProps) => {
         )}
       </div>
 
-      <div className="h-[80%] text-wrap overflow-y-auto">{children}</div>
+      <div className="h-[80%] text-wrap overflow-y-auto no-scrollbar">
+        {children}
+      </div>
 
       {footer && <div>{footer}</div>}
     </div>
