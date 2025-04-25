@@ -1,18 +1,12 @@
 import { auth } from "@/auth";
 import LoginForm from "./loginForm";
-import SignOutButton from "@/components/signOutButton";
+import { redirect } from "next/navigation";
 
 const LoginPage = async () => {
   const session = await auth();
 
-  if (session) {
-    return (
-      <div>
-        Logged In Already
-        <p>{JSON.stringify(session, null, 4)}</p>
-        <SignOutButton />
-      </div>
-    );
+  if (session && session.user) {
+    return redirect("/");
   }
 
   return (
