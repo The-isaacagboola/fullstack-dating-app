@@ -15,7 +15,7 @@ const MemberSideBar = ({
   const path = usePathname();
 
   return (
-    <div className="flex flex-col justify-between min-h-[630px] py-4 px-7  text-lg rounded-xl shadow-xl bg-gray-700/10">
+    <div className="flex flex-col justify-between min-h-[630px] h-full py-4 px-7  text-lg rounded-xl shadow-xl bg-gray-700/10">
       <div className="flex flex-col items-center w-full">
         <Image
           alt="profile image"

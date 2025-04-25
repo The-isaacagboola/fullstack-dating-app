@@ -21,7 +21,7 @@ const NavLinks = () => {
         <Link href={"/lists?type=source"}> Lists</Link>
       </li>
       <li className={`${pathname == "/messages" ? "text-red-500 " : ""}`}>
-        <Link href={"/messages"}>Messages</Link>
+        <Link href={"/messages?container=inbox"}>Messages</Link>
       </li>
     </ul>
   );

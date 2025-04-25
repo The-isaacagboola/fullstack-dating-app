@@ -3,6 +3,7 @@ import { createMessage } from "@/app/actions/messageActions";
 import { MessageSChema, messageSchema } from "@/lib/schemas/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
+import { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { ImSpinner3 } from "react-icons/im";
 import { IoSendSharp } from "react-icons/io5";
@@ -20,6 +21,7 @@ export default function ChatForm({ recipientId }: { recipientId: string }) {
   });
 
   const router = useRouter();
+  const messageRef = useRef<HTMLFormElement>(null);
   const submitMessage = async (text: MessageSChema) => {
     try {
       const message = await createMessage(recipientId, text);
@@ -33,8 +35,16 @@ export default function ChatForm({ recipientId }: { recipientId: string }) {
     }
   };
 
+  useEffect(() => {
+    messageRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, []);
+
   return (
-    <form className="flex gap-4 " onSubmit={handleSubmit(submitMessage)}>
+    <form
+      className="flex gap-4 mt-7"
+      ref={messageRef}
+      onSubmit={handleSubmit(submitMessage)}
+    >
       <input
         type="text"
         placeholder="Enter your message here"
