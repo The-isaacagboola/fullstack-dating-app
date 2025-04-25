@@ -5,7 +5,11 @@ import {
 } from "../actions/likeActions";
 import MemberCard from "../members/MemberCard";
 import Link from "next/link";
+import { NextPage } from "next";
 
+interface PageProps {
+  searchParams: { [key: string]: string | undefined };
+}
 const Links = [
   {
     id: 1,
@@ -23,13 +27,10 @@ const Links = [
     type: "mutual",
   },
 ];
-const ListsPage = async ({
-  searchParams,
-}: {
-  searchParams: { type: string };
-}) => {
-  const { type } = await searchParams;
-  const members = await fetchLikedMembers(type);
+
+const ListsPage: NextPage<PageProps> = async ({ searchParams }) => {
+  const type = searchParams?.type || "source";
+  const members = await fetchLikedMembers(type || "source");
   const likedIDs = await fetchCurrentUserLikeIDs();
 
   return (
