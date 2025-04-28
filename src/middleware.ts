@@ -1,10 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextResponse } from "next/server";
-import { auth } from "./auth";
+import { getToken } from "next-auth/jwt";
 import { authRoutes, publicRoutes } from "./routes";
 
-export default auth((req) => {
+const secret = process.env.AUTH_SECRET;
+
+export async function middleware(req: any) {
+  const token = await getToken({ req, secret });
   const { nextUrl } = req;
-  const isLoggedIn = !!req.auth;
+
+  const isLoggedIn = !!token;
 
   const isPublic = publicRoutes.includes(nextUrl.pathname);
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
@@ -24,12 +29,8 @@ export default auth((req) => {
     return NextResponse.redirect(new URL("/login", nextUrl));
   }
 
-  if (isLoggedIn && nextUrl.pathname !== "/complete-profile") {
-    return NextResponse.redirect(new URL("/complete-profile", nextUrl));
-  }
-
   return NextResponse.next();
-});
+}
 
 export const config = {
   matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
