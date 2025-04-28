@@ -7,7 +7,11 @@ const secret = process.env.AUTH_SECRET;
 
 export async function middleware(req: any) {
   const token = await getToken({ req, secret });
-  console.log("Token in middleware:", token);
+  if (!token) {
+    console.error("🛑 Token not found. Probably secret missing or wrong!");
+  } else {
+    console.log("✅ Token in middleware:", token);
+  }
 
   const { nextUrl } = req;
 
