@@ -7,6 +7,8 @@ const secret = process.env.AUTH_SECRET;
 
 export async function middleware(req: any) {
   const token = await getToken({ req, secret });
+  console.log("Token in middleware:", token);
+
   const { nextUrl } = req;
 
   const isLoggedIn = !!token;
