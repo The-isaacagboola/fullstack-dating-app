@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 import { authRoutes, publicRoutes } from "./routes";
 
-const secret = process.env.AUTH_SECRET;
+const secret = process.env.NEXTAUTH_SECRET;
 
 export async function middleware(req: any) {
   const token = await getToken({ req, secret });
